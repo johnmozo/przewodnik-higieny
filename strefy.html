@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Strefy czyste i brudne – Przewodnik Higieny</title>
+</head>
+<body>
+
+<div id="menu-placeholder"></div>
+
+<script>
+    fetch("menu.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("menu-placeholder").innerHTML = data;
+        });
+</script>
+
+
+
+<h1>Strefy czyste i brudne – jak je organizować</h1>
+
+<p>W profesjonalnej kuchni w Wielkiej Brytanii obowiązuje zasada ścisłego oddzielenia stref czystych i brudnych. Celem jest zapobieganie kontaminacji krzyżowej i zapewnienie bezpieczeństwa żywności.</p>
+
+<h2>1. Dlaczego podział na strefy jest ważny?</h2>
+<p>Oddzielenie stref minimalizuje ryzyko skażenia żywności gotowej do spożycia bakteriami z surowych produktów, odpadów lub brudnych naczyń.</p>
+
+<h2>2. Strefa czysta</h2>
+<p>To obszar, w którym pracuje się z żywnością gotową do spożycia. Nie mogą się tu znajdować surowe produkty ani odpady.</p>
+
+<h2>3. Strefa brudna</h2>
+<p>To miejsce przygotowywania surowego mięsa, ryb, rozpakowywania dostaw oraz mycia naczyń. Ryzyko skażenia jest tu najwyższe.</p>
+
+<h2>4. Kolorowe deski – standard UK</h2>
+<table>
+    <tr>
+        <th>Kolor</th>
+        <th>Zastosowanie</th>
+    </tr>
+    <tr>
+        <td>Czerwony</td>
+        <td>Surowe mięso</td>
+    </tr>
+    <tr>
+        <td>Żółty</td>
+        <td>Surowy drób</td>
+    </tr>
+    <tr>
+        <td>Niebieski</td>
+        <td>Surowe ryby</td>
+    </tr>
+    <tr>
+        <td>Zielony</td>
+        <td>Warzywa</td>
+    </tr>
+    <tr>
+        <td>Brązowy</td>
+        <td>Produkty pieczone</td>
+    </tr>
+    <tr>
+        <td>Biały</td>
+        <td>Nabiał / gotowe do spożycia</td>
+    </tr>
+</table>
+
+<h2>5. Organizacja pracy</h2>
+<ul>
+    <li>Oddzielne powierzchnie robocze dla surowych i gotowych produktów.</li>
+    <li>Wyraźne oznaczenia i kolorowe narzędzia.</li>
+    <li>Praca zawsze w kierunku: <strong>brudne → czyste</strong>.</li>
+    <li>Oddzielne zlewy do rąk, warzyw i naczyń.</li>
+</ul>
+
+<h2>6. Podsumowanie</h2>
+<p>Prawidłowy podział stref to fundament bezpieczeństwa żywności. Dzięki niemu kuchnia spełnia wymagania FSA i minimalizuje ryzyko kontaminacji krzyżowej.</p>
+
+</body>
+</html>
+

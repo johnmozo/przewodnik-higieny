@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Podstawy HACCP – Przewodnik Higieny</title>
+    
+</head>
+<body>
+
+<div id="menu-placeholder"></div>
+
+<script>
+    fetch("menu.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("menu-placeholder").innerHTML = data;
+        });
+</script>
+
+
+<h1>Podstawy HACCP w kuchni profesjonalnej</h1>
+
+<p>HACCP (Hazard Analysis and Critical Control Points) to obowiązkowy system bezpieczeństwa żywności w profesjonalnych kuchniach w Wielkiej Brytanii. Jego celem jest identyfikacja i kontrola zagrożeń, które mogą prowadzić do zatrucia pokarmowego.</p>
+
+<h2>1. Dlaczego HACCP jest wymagany?</h2>
+<p>Food Standards Agency (FSA) wymaga, aby każda kuchnia stosowała HACCP, prowadziła dokumentację i szkoliła pracowników. Inspektor EHO sprawdza, czy system działa w praktyce, a nie tylko na papierze.</p>
+
+<h2>2. Siedem zasad HACCP</h2>
+<ul>
+    <li><strong>Analiza zagrożeń</strong> – identyfikacja ryzyka biologicznego, chemicznego i fizycznego.</li>
+    <li><strong>Ustalenie CCP</strong> – kluczowe punkty kontroli, takie jak gotowanie czy chłodzenie.</li>
+    <li><strong>Limity krytyczne</strong> – np. gotowanie kurczaka min. 75°C.</li>
+    <li><strong>Monitorowanie</strong> – codzienne pomiary temperatur i kontrole.</li>
+    <li><strong>Działania korygujące</strong> – co zrobić, gdy limit zostanie przekroczony.</li>
+    <li><strong>Weryfikacja</strong> – audyty i przegląd systemu.</li>
+    <li><strong>Dokumentacja</strong> – zapisy SFBB, dzienniki temperatur.</li>
+</ul>
+
+<h2>3. Przykładowe CCP</h2>
+<table>
+    <tr>
+        <th>Obszar</th>
+        <th>CCP</th>
+        <th>Limit krytyczny</th>
+    </tr>
+    <tr>
+        <td>Gotowanie</td>
+        <td>Temperatura wewnętrzna</td>
+        <td>min. 75°C</td>
+    </tr>
+    <tr>
+        <td>Chłodzenie</td>
+        <td>Temperatura lodówki</td>
+        <td>0–5°C</td>
+    </tr>
+    <tr>
+        <td>Przechowywanie</td>
+        <td>Temperatura zamrażarki</td>
+        <td>–18°C</td>
+    </tr>
+</table>
+
+<h2>4. Podsumowanie</h2>
+<p>HACCP pomaga utrzymać wysoki poziom higieny, spełnić wymagania FSA i zapewnić bezpieczeństwo żywności w kuchni profesjonalnej. To fundament każdej dobrze funkcjonującej kuchni w UK.</p>
+
+</body>
+</html>

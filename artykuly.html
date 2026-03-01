@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Artykuły – Przewodnik Higieny</title>
+    
+</head>
+<body>
+
+<div id="menu-placeholder"></div>
+
+<script>
+    fetch("menu.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("menu-placeholder").innerHTML = data;
+        });
+</script>
+
+
+
+
+
+<div class="header">
+    <h1>Artykuły</h1>
+    <p>Przewodnik po higienie i bezpieczeństwie żywności w kuchniach profesjonalnych w UK</p>
+</div>
+
+<div class="content">
+    <div class="cards">
+
+        <div class="card">
+            <h3><a href="temperatury.html">Kontrola temperatur – wymagania w UK</a></h3>
+            <p>Najważniejsze temperatury w kuchni profesjonalnej zgodnie z FSA.</p>
+        </div>
+
+        <div class="card">
+            <h3><a href="strefy.html">Strefy czyste i brudne – jak je organizować</a></h3>
+            <p>Jak unikać kontaminacji krzyżowej i organizować workflow.</p>
+        </div>
+
+        <div class="card">
+            <h3><a href="haccp.html">Podstawy HACCP w kuchni profesjonalnej</a></h3>
+            <p>Fundamenty systemu HACCP zgodnego z wymaganiami FSA.</p>
+        </div>
+
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script>
+    fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("footer-placeholder").innerHTML = data;
+        });
+</script>
+
+</body>
+</html>

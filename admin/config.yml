@@ -1,0 +1,34 @@
+backend:
+  name: github
+  repo: johnmozo/przewodnik-higieny
+  branch: main
+
+# Folder, w którym CMS będzie zapisywał przesyłane zdjęcia
+media_folder: "images/uploads"
+# Ścieżka, pod którą strona będzie szukać tych zdjęć w kodzie HTML
+public_folder: "/images/uploads"
+
+collections:
+  - name: "artykuly"
+    label: "Artykuły"
+    folder: "content/artykuly"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Tytuł", name: "title", widget: "string" }
+      - { label: "Data publikacji", name: "date", widget: "datetime", format: "YYYY-MM-DD", display_format: "DD.MM.YYYY" }
+      - { label: "Zdjęcie wyróżniające", name: "image", widget: "image", required: false }
+      - { label: "Krótki opis (SEO)", name: "description", widget: "text" }
+      - { label: "Treść artykułu", name: "body", widget: "markdown" }
+
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Tytuł", name: "title", widget: "string" }
+      - { label: "Data wpisu", name: "date", widget: "datetime", format: "YYYY-MM-DD", display_format: "DD.MM.YYYY" }
+      - { label: "Autor", name: "author", widget: "string", default: "John Mozo" }
+      - { label: "Miniaturka", name: "thumbnail", widget: "image", required: false }
+      - { label: "Treść wpisu", name: "body", widget: "markdown" }

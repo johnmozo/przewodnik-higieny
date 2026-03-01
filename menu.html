@@ -1,0 +1,36 @@
+<nav>
+    <a href="index.html">
+        <img src="logo-higieny.png" alt="Przewodnik Higieny" style="height:60px; vertical-align:middle; margin-right:20px;">
+    </a>
+    <a href="index.html">Strona główna</a>
+    <a href="artykuly.html">Artykuły</a>
+    <a href="blog.html">Blog</a>
+    <a href="o-stronie.html">O stronie</a>
+
+    <button id="themeToggle" style="float:right; background:#444; color:#fff; border:none; padding:8px 14px; border-radius:6px; cursor:pointer;">
+        🌙 Dark Mode
+    </button>
+</nav>
+
+<script>
+    // Initialize dark mode from localStorage when menu loads
+    const toggle = document.getElementById("themeToggle");
+    const body = document.body;
+
+    if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark");
+        toggle.textContent = "☀️ Light Mode";
+    }
+
+    toggle.addEventListener("click", () => {
+        body.classList.toggle("dark");
+
+        if (body.classList.contains("dark")) {
+            localStorage.setItem("theme", "dark");
+            toggle.textContent = "☀️ Light Mode";
+        } else {
+            localStorage.setItem("theme", "light");
+            toggle.textContent = "🌙 Dark Mode";
+        }
+    });
+</script>

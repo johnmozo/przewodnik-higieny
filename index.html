@@ -2,403 +2,82 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interaktywny Przewodnik po Higienie w Kuchni</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Calm Harmony -->
-    <!-- Application Structure Plan: Zastosowano strukturę tematyczną z nawigacją u góry, aby umożliwić nieliniowe przyswajanie wiedzy. Użytkownik może swobodnie przeskakiwać między kluczowymi obszarami higieny (Osobista, Bezpieczeństwo Żywności, Czystość, HACCP). Taka budowa, w przeciwieństwie do liniowego pokazu slajdów, sprzyja lepszemu zrozumieniu i powtarzaniu materiału. Główne interakcje to klikalne karty, interaktywne diagramy (lodówka, deski do krojenia) i mini-testy, które angażują użytkownika i ułatwiają zapamiętywanie kluczowych zasad. -->
-    <!-- Visualization & Content Choices: Informacje z raportu zostały przekształcone w interaktywne komponenty. Cel: Organizacja/Porównanie -> Diagramy (lodówka, deski) w HTML/CSS/JS, aby wizualnie pokazać separację produktów. Cel: Informowanie -> Interaktywne karty i wizualny termometr dla stref temperatur. Cel: Utrwalenie wiedzy -> Prosty quiz na końcu. Wybrano te metody, aby zwiększyć zaangażowanie i ułatwić zrozumienie praktycznych aspektów higieny. Nie użyto bibliotek do wykresów, ponieważ charakter danych (jakościowy) lepiej oddają dedykowane diagramy. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <style>
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: #FDFBF8;
-            color: #333;
-        }
-        .nav-link {
-            transition: color 0.3s, border-bottom-color 0.3s;
-            border-bottom: 2px solid transparent;
-        }
-        .nav-link:hover, .nav-link.active {
-            color: #005A9C;
-            border-bottom-color: #005A9C;
-        }
-        .card {
-            transition: transform 0.3s, box-shadow 0.3s;
-            background-color: #FFFFFF;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .content-section {
-            display: none;
-        }
-        .content-section.active {
-            display: block;
-        }
-        .interactive-card .details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-in-out;
-        }
-        .interactive-card.open .details {
-            max-height: 500px;
-        }
-        .chopping-board {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .chopping-board:hover {
-            transform: scale(1.05);
-            opacity: 1 !important;
-        }
-        .fridge-shelf {
-            border-bottom: 2px solid #A0AEC0;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .fridge-shelf:hover {
-            background-color: #E2E8F0;
-        }
-        .quiz-answer {
-            background-color: #E0F2FE;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.5s ease;
-        }
-        .quiz-answer.visible {
-            max-height: 200px;
-            padding: 1rem;
-            margin-top: 0.5rem;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Przewodnik Higieny – Kuchnia Profesjonalna UK</title>
+    
 </head>
-<body class="antialiased">
+<body>
 
-    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <h1 class="text-xl font-bold text-gray-800">Przewodnik Higieny</h1>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#intro" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Wprowadzenie</a>
-                        <a href="#personal" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Higiena Osobista</a>
-                        <a href="#safety" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Bezpieczeństwo Żywności</a>
-                        <a href="#cleaning" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Czystość i Sprzęt</a>
-                        <a href="#haccp" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700">Zasady HACCP</a>
-                    </div>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-gray-800 hover:bg-gray-100 focus:outline-none">
-                        <span class="sr-only">Otwórz menu</span>
-                        <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </nav>
-        <div id="mobile-menu" class="md:hidden hidden">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#intro" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700">Wprowadzenie</a>
-                <a href="#personal" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700">Higiena Osobista</a>
-                <a href="#safety" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700">Bezpieczeństwo Żywności</a>
-                <a href="#cleaning" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700">Czystość i Sprzęt</a>
-                <a href="#haccp" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700">Zasady HACCP</a>
-            </div>
-        </div>
-    </header>
+<!-- NAVIGATION -->
+<div id="menu-placeholder"></div>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-        <section id="intro" class="content-section active">
-            <div class="text-center bg-white p-8 rounded-lg shadow-lg">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Zasady Higieny w Profesjonalnej Kuchni</h2>
-                <p class="text-lg text-gray-600 mb-6 max-w-3xl mx-auto">Witaj w interaktywnym przewodniku po kluczowych zasadach higieny. Utrzymanie najwyższych standardów czystości to nie tylko wymóg prawny, ale fundament działalności każdego lokalu gastronomicznego, gwarantujący bezpieczeństwo gości i najwyższą jakość potraw. Dowiedz się, jak Twoje codzienne nawyki wpływają na sukces całej kuchni.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-                    <div class="bg-blue-50 p-4 rounded-lg">
-                        <h3 class="font-bold text-blue-800">Bezpieczeństwo Gości</h3>
-                        <p class="text-sm text-blue-700">Zapobiega zatruciom pokarmowym i chorobom.</p>
-                    </div>
-                    <div class="bg-green-50 p-4 rounded-lg">
-                        <h3 class="font-bold text-green-800">Jakość Potraw</h3>
-                        <p class="text-sm text-green-700">Czystość to lepszy smak i wygląd dań.</p>
-                    </div>
-                    <div class="bg-yellow-50 p-4 rounded-lg">
-                        <h3 class="font-bold text-yellow-800">Reputacja Lokalu</h3>
-                        <p class="text-sm text-yellow-700">Buduje zaufanie klientów i pozytywny wizerunek.</p>
-                    </div>
-                    <div class="bg-red-50 p-4 rounded-lg">
-                        <h3 class="font-bold text-red-800">Zgodność z Prawem</h3>
-                        <p class="text-sm text-red-700">Zapewnia zgodność z wymogami Sanepidu i HACCP.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="personal" class="content-section">
-            <h2 class="text-3xl font-bold text-center mb-8">Higiena Osobista Personelu</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Pracownik jest pierwszym i najważniejszym ogniwem w łańcuchu bezpieczeństwa żywności. Twoje nawyki mają bezpośredni wpływ na to, co trafia na talerz gościa. Kliknij na karty poniżej, aby poznać szczegóły.</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="interactive-card card rounded-lg shadow-md overflow-hidden cursor-pointer">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">💧 Mycie Rąk</h3>
-                        <p class="text-gray-600">Absolutna podstawa. Dowiedz się kiedy i jak robić to prawidłowo.</p>
-                        <div class="details mt-4 text-sm text-gray-700 space-y-2">
-                            <p><strong class="text-gray-900">Kiedy?</strong> Zawsze przed pracą, po kontakcie z surowym mięsem, po toalecie, po dotykaniu pieniędzy, po kaszlu/kichaniu.</p>
-                            <p><strong class="text-gray-900">Jak?</strong> Ciepłą wodą z mydłem przez minimum 20-30 sekund. Dokładnie umyj przestrzenie między palcami, grzbiety dłoni i nadgarstki.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="interactive-card card rounded-lg shadow-md overflow-hidden cursor-pointer">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">👕 Strój Roboczy</h3>
-                        <p class="text-gray-600">Twój strój to bariera ochronna dla żywności.</p>
-                        <div class="details mt-4 text-sm text-gray-700 space-y-2">
-                            <ul class="list-disc list-inside">
-                                <li>Zawsze czysty i kompletny (kitel, zapaska).</li>
-                                <li>Obuwie antypoślizgowe, z zakrytymi palcami.</li>
-                                <li>Włosy zebrane i schowane pod czepkiem/czapką.</li>
-                                <li>Brak biżuterii na dłoniach i nadgarstkach.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="interactive-card card rounded-lg shadow-md overflow-hidden cursor-pointer">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">🩹 Zdrowie i Skaleczenia</h3>
-                        <p class="text-gray-600">Dbaj o siebie, aby chronić innych.</p>
-                        <div class="details mt-4 text-sm text-gray-700 space-y-2">
-                           <p><strong class="text-gray-900">Choroba:</strong> Zgłaszaj przełożonemu każdą dolegliwość (biegunka, wymioty, gorączka). Nie przychodź do pracy chory.</p>
-                           <p><strong class="text-gray-900">Skaleczenia:</strong> Wszystkie rany muszą być zabezpieczone wodoodpornym, widocznym plastrem (np. niebieskim).</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="safety" class="content-section">
-            <h2 class="text-3xl font-bold text-center mb-8">Bezpieczeństwo Żywności</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">Od momentu dostawy aż po wydanie dania, każdy etap wymaga kontroli. Poznaj zasady, które gwarantują, że żywność jest zawsze bezpieczna dla konsumenta. To serce systemu HACCP.</p>
-            
-            <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
-                <h3 class="text-2xl font-bold mb-4">🌡️ Strefy Temperaturowe</h3>
-                <p class="text-gray-600 mb-6">Temperatura to kluczowy czynnik kontroli rozwoju bakterii. Unikaj "strefy zagrożenia" jak ognia!</p>
-                <div class="relative w-full max-w-2xl mx-auto h-20 bg-gray-200 rounded-lg flex items-center">
-                    <div class="absolute h-full bg-blue-400 rounded-l-lg" style="width: 20%;">
-                        <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-blue-800">Zamrażarka &lt;-18°C</span>
-                    </div>
-                    <div class="absolute h-full bg-blue-200" style="left: 20%; width: 10%;">
-                         <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-blue-600">Lodówka 1-4°C</span>
-                    </div>
-                    <div class="absolute h-full bg-red-400" style="left: 30%; width: 50%;">
-                        <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white font-bold">STREFA ZAGROŻENIA (5-60°C)</span>
-                    </div>
-                    <div class="absolute h-full bg-orange-400 rounded-r-lg" style="left: 80%; width: 20%;">
-                        <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-orange-800">Podgrzewanie >60°C</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-bold mb-4">🧊 Zasady Magazynowania</h3>
-                    <p class="text-gray-600 mb-4">Prawidłowe ułożenie produktów w lodówce zapobiega zanieczyszczeniom krzyżowym. Kliknij na półkę, aby zobaczyć, co powinno się na niej znaleźć.</p>
-                    <div id="fridge" class="w-full max-w-sm mx-auto bg-gray-100 border-4 border-gray-300 rounded-lg p-4 font-mono text-sm">
-                        <div class="fridge-shelf p-4 text-center" data-content="Żywność gotowa do spożycia, ciasta, desery. Zawsze na samej górze!">Górna półka</div>
-                        <div class="fridge-shelf p-4 text-center" data-content="Nabiał, wędliny, gotowe półprodukty.">Środkowa półka</div>
-                        <div class="fridge-shelf p-4 text-center" data-content="Surowe mięso, drób, ryby. W szczelnych pojemnikach, aby soki nie kapały niżej.">Dolna półka</div>
-                        <div class="fridge-shelf p-4 text-center" data-content="Owoce i warzywa.">Szuflady</div>
-                    </div>
-                    <div id="fridge-info" class="mt-4 p-4 bg-blue-50 rounded-lg text-blue-800 min-h-[50px]">
-                        Wybierz półkę, aby wyświetlić informacje.
-                    </div>
-                </div>
-
-                <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <h3 class="text-2xl font-bold mb-4">🔪 Zanieczyszczenia Krzyżowe</h3>
-                    <p class="text-gray-600 mb-4">Używaj oddzielnych, oznaczonych kolorami desek do krojenia. To prosta zasada, która ratuje zdrowie. Najedź na deskę, aby zobaczyć jej przeznaczenie.</p>
-                    <div id="boards-container" class="grid grid-cols-2 gap-4 mt-6">
-                        <div class="chopping-board rounded-lg h-20 flex items-center justify-center font-bold text-white" style="background-color: #EF4444;" data-info="Czerwona: Surowe mięso">Mięso</div>
-                        <div class="chopping-board rounded-lg h-20 flex items-center justify-center font-bold text-white" style="background-color: #22C55E;" data-info="Zielona: Warzywa i owoce">Warzywa</div>
-                        <div class="chopping-board rounded-lg h-20 flex items-center justify-center font-bold text-white" style="background-color: #3B82F6;" data-info="Niebieska: Surowe ryby i owoce morza">Ryby</div>
-                        <div class="chopping-board rounded-lg h-20 flex items-center justify-center font-bold text-gray-800" style="background-color: #F8FAFC; border: 1px solid #ccc" data-info="Biała: Nabiał i pieczywo">Nabiał</div>
-                    </div>
-                     <div id="board-info" class="mt-4 p-4 bg-green-50 rounded-lg text-green-800 min-h-[50px]">
-                        Najedź na deskę, aby wyświetlić informacje.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="cleaning" class="content-section">
-            <h2 class="text-3xl font-bold text-center mb-8">Czystość Stanowiska Pracy i Sprzętu</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">"Czyste na bieżąco" to zasada, która powinna towarzyszyć Ci przez cały dzień pracy. Regularne mycie i dezynfekcja to klucz do utrzymania bezpiecznego środowiska i sprawnego funkcjonowania kuchni.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-3">📋 Plan Higieny</h3>
-                    <p class="text-gray-600 mb-4">Postępuj zgodnie z harmonogramem czyszczenia. Każdy obszar i sprzęt ma swoje określone procedury i częstotliwość mycia.</p>
-                    <ul class="space-y-2">
-                        <li><strong class="text-gray-800">Codziennie:</strong> Powierzchnie robocze, podłogi, zlewy, deski, noże.</li>
-                        <li><strong class="text-gray-800">Tygodniowo:</strong> Lodówki, piekarniki, okapy, ściany przy blatach.</li>
-                        <li><strong class="text-gray-800">Miesięcznie:</strong> Zamrażarki, magazyny, wentylacja.</li>
-                    </ul>
-                </div>
-                <div class="card p-6 rounded-lg shadow-md">
-                    <h3 class="text-xl font-bold mb-3">🧪 Procedury i Środki</h3>
-                    <p class="text-gray-600 mb-4">Zawsze używaj odpowiednich środków i technik.</p>
-                    <ul class="list-disc list-inside space-y-2 text-gray-700">
-                        <li><strong class="text-gray-900">Mycie:</strong> Usunięcie widocznych zabrudzeń za pomocą detergentu.</li>
-                        <li><strong class="text-gray-900">Dezynfekcja:</strong> Zniszczenie drobnoustrojów za pomocą środka dezynfekującego.</li>
-                        <li><strong class="text-gray-900">Przechowywanie chemii:</strong> Zawsze w wyznaczonym, oddzielnym miejscu, z dala od żywności.</li>
-                        <li><strong class="text-gray-900">Zarządzanie odpadami:</strong> Regularnie opróżniaj kosze, utrzymuj w czystości miejsce składowania odpadów.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="haccp" class="content-section">
-            <h2 class="text-3xl font-bold text-center mb-8">Podsumowanie - 5 Złotych Zasad HACCP</h2>
-            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">System HACCP (Analiza Zagrożeń i Krytyczne Punkty Kontroli) to fundament bezpieczeństwa żywności. Wszystkie zasady, które poznałeś, składają się na ten system. Zapamiętaj te 5 kluczowych kroków, aby Twoja praca była zawsze bezpieczna.</p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 text-center">
-                <div class="card p-6 rounded-lg shadow-md">
-                    <div class="text-4xl mb-4">🧼</div>
-                    <h3 class="font-bold">1. Utrzymuj Czystość</h3>
-                    <p class="text-sm text-gray-600">Myj ręce, sprzęt i powierzchnie.</p>
-                </div>
-                <div class="card p-6 rounded-lg shadow-md">
-                    <div class="text-4xl mb-4">⬌</div>
-                    <h3 class="font-bold">2. Oddzielaj</h3>
-                    <p class="text-sm text-gray-600">Żywność surową od gotowej.</p>
-                </div>
-                <div class="card p-6 rounded-lg shadow-md">
-                    <div class="text-4xl mb-4">🔥</div>
-                    <h3 class="font-bold">3. Gotuj Dokładnie</h3>
-                    <p class="text-sm text-gray-600">Stosuj odpowiednio wysoką temperaturę.</p>
-                </div>
-                <div class="card p-6 rounded-lg shadow-md">
-                    <div class="text-4xl mb-4">🌡️</div>
-                    <h3 class="font-bold">4. Przechowuj Bezpiecznie</h3>
-                    <p class="text-sm text-gray-600">W odpowiedniej temperaturze.</p>
-                </div>
-                <div class="card p-6 rounded-lg shadow-md">
-                    <div class="text-4xl mb-4">💧</div>
-                    <h3 class="font-bold">5. Używaj Bezpiecznych Produktów</h3>
-                    <p class="text-sm text-gray-600">Sprawdzona woda i żywność.</p>
-                </div>
-            </div>
-            <div class="mt-12 bg-white p-8 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-bold text-center mb-4">Sprawdź swoją wiedzę!</h3>
-                <div class="max-w-xl mx-auto">
-                    <p class="text-center text-gray-700">Pytanie: Gdzie w lodówce powinno być przechowywane surowe mięso z kurczaka?</p>
-                    <div class="text-center mt-4">
-                        <button id="quiz-button" class="bg-blue-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors">Pokaż odpowiedź</button>
-                    </div>
-                    <div id="quiz-answer" class="quiz-answer rounded-lg text-center text-blue-900">
-                        <strong>Poprawna odpowiedź:</strong> Na najniższej półce, w szczelnym pojemniku. Zapobiega to kapaniu soków na inne produkty i minimalizuje ryzyko zanieczyszczenia krzyżowego.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="bg-gray-800 text-white mt-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center">
-            <p>&copy; 2025 Interaktywny Przewodnik po Higienie. Pamiętaj, higiena to nasza wspólna odpowiedzialność.</p>
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const contentSections = document.querySelectorAll('.content-section');
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            function updateActiveLink(targetId) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${targetId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            function showSection(targetId) {
-                contentSections.forEach(section => {
-                    section.classList.remove('active');
-                    if (section.id === targetId) {
-                        section.classList.add('active');
-                    }
-                });
-                updateActiveLink(targetId);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    showSection(targetId);
-                    if (mobileMenu.classList.contains('block')) {
-                        mobileMenu.classList.remove('block');
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            });
-
-            mobileMenuButton.addEventListener('click', function() {
-                const isHidden = mobileMenu.classList.contains('hidden');
-                mobileMenu.classList.toggle('hidden', !isHidden);
-                mobileMenu.classList.toggle('block', isHidden);
-            });
-
-            const interactiveCards = document.querySelectorAll('.interactive-card');
-            interactiveCards.forEach(card => {
-                card.addEventListener('click', () => {
-                    card.classList.toggle('open');
-                });
-            });
-
-            const fridgeShelves = document.querySelectorAll('.fridge-shelf');
-            const fridgeInfo = document.getElementById('fridge-info');
-            fridgeShelves.forEach(shelf => {
-                shelf.addEventListener('click', () => {
-                    fridgeInfo.textContent = shelf.dataset.content;
-                });
-            });
-
-            const boards = document.querySelectorAll('.chopping-board');
-            const boardInfo = document.getElementById('board-info');
-            const boardsContainer = document.getElementById('boards-container');
-            
-            boards.forEach(board => {
-                board.addEventListener('mouseenter', () => {
-                    boardInfo.textContent = board.dataset.info;
-                    boards.forEach(b => b.style.opacity = '0.7');
-                    board.style.opacity = '1';
-                });
-            });
-            boardsContainer.addEventListener('mouseleave', () => {
-                 boardInfo.textContent = "Najedź na deskę, aby wyświetlić informacje.";
-                 boards.forEach(b => b.style.opacity = '1');
-            });
-
-            const quizButton = document.getElementById('quiz-button');
-            const quizAnswer = document.getElementById('quiz-answer');
-            quizButton.addEventListener('click', () => {
-                quizAnswer.classList.toggle('visible');
-            });
-
-            showSection('intro');
+<script>
+    fetch("menu.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("menu-placeholder").innerHTML = data;
         });
-    </script>
+</script>
+
+
+
+
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <h1>Przewodnik Higieny</h1>
+    <p>Praktyczna wiedza o higienie i bezpieczeństwie żywności w profesjonalnych kuchniach w Wielkiej Brytanii. Zgodnie z wymaganiami FSA i HACCP.</p>
+</div>
+
+<!-- BIG CARD WITH LATEST ARTICLES -->
+<div class="big-card">
+    <h2>Najnowsze artykuły</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3><a href="temperatury.html">Kontrola temperatur – wymagania w UK</a></h3>
+            <p>Najważniejsze temperatury w kuchni profesjonalnej: gotowanie, chłodzenie, hot holding i reheating zgodnie z FSA.</p>
+        </div>
+
+        <div class="card">
+            <h3><a href="strefy.html">Strefy czyste i brudne – jak je organizować</a></h3>
+            <p>Jak oddzielać strefy czyste od brudnych, aby uniknąć kontaminacji krzyżowej. Praktyczne zasady zgodne ze standardami UK.</p>
+        </div>
+
+        <div class="card">
+            <h3><a href="haccp.html">Podstawy HACCP w kuchni profesjonalnej</a></h3>
+            <p>Fundamenty systemu HACCP obowiązkowego w każdej kuchni w UK. Jak identyfikować zagrożenia i prowadzić dokumentację zgodnie z FSA.</p>
+        </div>
+
+        <div class="card">
+            <h3><a href="artykuly.html">Zobacz wszystkie artykuły</a></h3>
+            <p>Pełna lista artykułów dotyczących higieny, bezpieczeństwa żywności i wymagań FSA.</p>
+        </div>
+
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script>
+    fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("footer-placeholder").innerHTML = data;
+        });
+</script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+

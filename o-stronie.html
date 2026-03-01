@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+
+    <title>O stronie – Przewodnik Higieny</title>
+   
+</head>
+<body>
+
+<div id="menu-placeholder"></div>
+
+<script>
+    fetch("menu.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("menu-placeholder").innerHTML = data;
+        });
+</script>
+
+
+
+
+
+<div class="header">
+    <h1>O stronie</h1>
+</div>
+
+<div class="content">
+    <p>Przewodnik Higieny to projekt edukacyjny stworzony z myślą o pracownikach gastronomii w Wielkiej Brytanii. Celem strony jest dostarczenie praktycznej wiedzy dotyczącej higieny, bezpieczeństwa żywności oraz wymagań Food Standards Agency (FSA).</p>
+
+    <p>Znajdziesz tu artykuły, porady, checklisty i wskazówki, które pomogą Ci przygotować kuchnię do inspekcji EHO, wdrożyć HACCP i utrzymać najwyższe standardy higieny.</p>
+
+    <p>Strona jest stale rozwijana — wkrótce pojawią się nowe artykuły, materiały szkoleniowe i narzędzia dla kucharzy oraz managerów.</p>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script>
+    fetch("footer.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("footer-placeholder").innerHTML = data;
+        });
+</script>
+
+</body>
+</html>

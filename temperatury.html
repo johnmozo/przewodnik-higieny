@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+
+    <title>Kontrola temperatur – Przewodnik Higieny</title>
+</head>
+<body>
+
+<div id="menu-placeholder"></div>
+
+<script>
+    fetch("menu.html")
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById("menu-placeholder").innerHTML = data;
+        });
+</script>
+
+
+<h1>Kontrola temperatur – wymagania w UK</h1>
+
+<p>Kontrola temperatur to jeden z najważniejszych elementów bezpieczeństwa żywności w profesjonalnych kuchniach w Wielkiej Brytanii. Odpowiednie temperatury zapobiegają namnażaniu bakterii i są kluczowe podczas inspekcji EHO.</p>
+
+<h2>1. Strefa zagrożenia (Danger Zone)</h2>
+<p><strong>5°C – 63°C</strong> to zakres, w którym bakterie rozwijają się najszybciej. Żywność powinna przebywać w tej strefie jak najkrócej.</p>
+
+<h2>2. Wymagania temperatur</h2>
+
+<h3>Chłodzenie i przechowywanie</h3>
+<table>
+    <tr><th>Rodzaj</th><th>Wymaganie</th></tr>
+    <tr><td>Lodówki</td><td>0–5°C</td></tr>
+    <tr><td>Zamrażarki</td><td>–18°C lub niżej</td></tr>
+    <tr><td>Gotowa żywność</td><td>poniżej 5°C</td></tr>
+</table>
+
+<h3>Gotowanie</h3>
+<table>
+    <tr><th>Produkt</th><th>Minimalna temperatura</th></tr>
+    <tr><td>Drób</td><td>75°C</td></tr>
+    <tr><td>Mielone mięso</td><td>75°C</td></tr>
+    <tr><td>Ryby</td><td>70°C</td></tr>
+</table>
+
+<h3>Podgrzewanie</h3>
+<p>Minimalnie <strong>75°C</strong>, szybkie podgrzanie, tylko jedno ponowne podgrzanie.</p>
+
+<h3>Hot Holding</h3>
+<p>Utrzymywanie potraw w temperaturze <strong>min. 63°C</strong>.</p>
+
+<h3>Chłodzenie potraw</h3>
+<ul>
+    <li>z 63°C do 20°C w 90 minut,</li>
+    <li>z 20°C do 5°C w 4 godziny.</li>
+</ul>
+
+<h2>3. Zapisy temperatur</h2>
+<p>W UK stosuje się SFBB, Temperature Logs oraz HACCP Diary. Inspektor EHO zawsze sprawdza dokumentację.</p>
+
+<h2>4. Podsumowanie</h2>
+<p>Prawidłowa kontrola temperatur to fundament bezpieczeństwa żywności i kluczowy element wymagań FSA.</p>
+
+</body>
+</html>
+
