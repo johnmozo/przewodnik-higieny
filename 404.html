@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Page Not Found</title>
+  <script>
+    // SPA routing fallback for GitHub Pages
+    // When a page isn't found, redirect to the root and let the SPA handle routing
+    if (window.location.pathname !== '/przewodnik-higieny/') {
+      // Check if this is the admin route
+      if (window.location.pathname.includes('/admin/')) {
+        window.location.replace('/przewodnik-higieny/admin/');
+      } else {
+        // For other routes, redirect to home
+        window.location.replace('/przewodnik-higieny/');
+      }
+    }
+  </script>
+</head>
+<body>
+  <p>Redirecting...</p>
+</body>
+</html>

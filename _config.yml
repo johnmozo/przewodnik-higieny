@@ -1,0 +1,28 @@
+# GitHub Pages Jekyll configuration
+# Disable Jekyll processing for Decap CMS
+markdown: kramdown
+highlighter: rouge
+
+# Exclude from processing
+exclude:
+  - admin/
+  - content/
+  - node_modules/
+  - .git/
+  - .gitignore
+  - check_html.py
+  - validate.py
+
+# Collections for Jekyll
+collections:
+  artykuly:
+    output: false
+  blog:
+    output: false
+
+# Defaults for Jekyll
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"

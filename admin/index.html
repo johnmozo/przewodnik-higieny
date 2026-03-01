@@ -2,12 +2,52 @@
 <html>
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Panel administracyjny – Przewodnik Higieny</title>
-  <script src="https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    #status { padding: 12px; border: 1px solid #ddd; border-radius: 6px; max-width: 800px; }
+    .ok { color: green }
+    .err { color: red }
+  </style>
 </head>
 <body>
+  <h1>Panel administracyjny — Diagnostyka</h1>
+  <div id="status">Uruchamianie…</div>
+
   <script>
-    CMS.init();
+    (async function(){
+      const status = document.getElementById('status');
+      function set(txt, cls){ status.textContent = txt; status.className = cls || ''; }
+
+      // Build path to config.yml relative to current path
+      const path = (function(){
+        // e.g. /przewodnik-higieny/admin/ -> /przewodnik-higieny/admin/config.yml
+        const p = location.pathname;
+        if (p.endsWith('/')) return p + 'config.yml';
+        return p.replace(/\/admin.*$/, '/admin/config.yml');
+      })();
+
+      try{
+        set('Sprawdzam dostępność ' + path + ' ...');
+        const res = await fetch(path, { cache: 'no-store' });
+        if (!res.ok) { set('Błąd: nie można pobrać config.yml — HTTP ' + res.status, 'err'); return; }
+        set('Plik config.yml dostępny. Inicjuję Decap CMS...', 'ok');
+      } catch(e){ set('Błąd fetch config.yml: ' + e.message, 'err'); return; }
+
+      // Load Decap CMS script dynamically and init with error handling
+      const s = document.createElement('script');
+      s.src = 'https://unpkg.com/decap-cms@3.0.0/dist/decap-cms.js';
+      s.onload = function(){
+        try{
+          if (typeof CMS === 'undefined') { set('Skrypt załadowany, ale obiekt CMS nie jest dostępny', 'err'); return; }
+          CMS.init();
+          set('Decap CMS zainicjowany poprawnie. Jeśli widzisz pustą stronę, sprawdź konsolę przeglądarki.', 'ok');
+        } catch(err){ set('Błąd podczas CMS.init(): ' + err.message, 'err'); }
+      };
+      s.onerror = function(){ set('Nie udało się załadować skryptu Decap CMS z unpkg.', 'err'); };
+      document.body.appendChild(s);
+    })();
   </script>
 </body>
 </html>
