@@ -1,14 +1,6 @@
 backend:
-  name: github
-  repo: johnmozo/przewodnik-higieny
+  name: git-gateway
   branch: main
-  auth_endpoint: https://github.com/login/oauth/authorize
-  client_id: "Ov23liubxARubZl5H1ks"
-  # You need to set Client ID from GitHub OAuth App
-  # See: https://github.com/settings/developers -> New OAuth App
-  # Application name: Przewodnik Higieny Admin
-  # Homepage URL: https://johnmozo.github.io/przewodnik-higieny
-  # Authorization callback URL: https://johnmozo.github.io/przewodnik-higieny/admin/
 
 # Folder, w którym CMS będzie zapisywał przesyłane zdjęcia
 media_folder: "images/uploads"
