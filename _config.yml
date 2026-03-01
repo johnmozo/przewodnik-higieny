@@ -5,7 +5,6 @@ highlighter: rouge
 
 # Exclude from processing
 exclude:
-  - admin/
   - content/
   - node_modules/
   - .git/
