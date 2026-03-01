@@ -1,0 +1,5 @@
+# SPA redirect for admin panel
+/admin/*  /admin/index.html  200
+
+# SPA redirect for main app
+/*  /index.html  200
