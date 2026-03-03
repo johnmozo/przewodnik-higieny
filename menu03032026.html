@@ -1,1 +1,181 @@
 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Winter Menu – Week 4 (Tuesday 03.03.2026)</title>
+  <meta name="description" content="Winter Menu Week 4 – Tuesday 03.03.2026: Mains, Sides, Desserts & Extras with calories." />
+  <style>
+    :root{
+      --bg:#f4f7fb;
+      --ink:#14395b;
+      --accent:#1e66a7;
+      --banner:#0d3b66;
+      --panel:#ffffff;
+      --snow:#e7f1fb;
+      --shadow: 0 8px 24px rgba(20,57,91,.12);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--ink);
+      background: radial-gradient(1200px 600px at 50% -100px, #ffffff, var(--bg));
+      line-height:1.45;
+    }
+    header.hero{
+      position:relative;
+      isolation:isolate;
+      color:#fff;
+      text-align:center;
+      padding: clamp(24px, 5vw, 48px) 16px;
+      background:
+        linear-gradient(180deg, rgba(13,59,102,.75), rgba(13,59,102,.35)),
+        url("assets/winter-week4-tuesday.png") center/cover no-repeat;
+      min-height: 42vh;
+      display:grid;
+      place-items:center;
+    }
+    header .title{
+      backdrop-filter: blur(2px);
+      background: rgba(13,59,102,.35);
+      border: 1px solid rgba(255,255,255,.25);
+      padding: 12px 18px;
+      border-radius: 12px;
+      display:inline-block;
+    }
+    h1{
+      margin:0 0 6px;
+      font-size: clamp(28px, 5vw, 48px);
+      letter-spacing:.5px;
+      text-shadow: 0 2px 10px rgba(0,0,0,.35);
+    }
+    .sub{
+      font-size: clamp(14px, 1.7vw, 18px);
+      opacity:.95;
+    }
+    main{
+      max-width: 980px;
+      margin: -40px auto 64px;
+      padding: 0 16px;
+    }
+    .grid{
+      display:grid;
+      gap: 20px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    section.menu-card{
+      grid-column: 1 / -1;
+      background: var(--panel);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(16px, 2.5vw, 28px);
+      border: 1px solid #e8eef6;
+    }
+    .row{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .col{
+      grid-column: span 12;
+    }
+    @media (min-width: 820px){
+      .col-6{grid-column: span 6;}
+      .col-4{grid-column: span 4;}
+      .col-8{grid-column: span 8;}
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:linear-gradient(90deg, var(--accent), #2f7bbf);
+      color:#fff;
+      padding:8px 14px;
+      border-radius:999px;
+      font-weight:700;
+      letter-spacing:.3px;
+      margin-bottom:12px;
+    }
+    .tag .snow{filter: drop-shadow(0 1px 2px rgba(0,0,0,.25));}
+    .list{
+      margin:0;
+      padding:0;
+      list-style:none;
+      border: 1px dashed #d3e3f6;
+      border-radius:12px;
+      overflow:hidden;
+    }
+    .list li{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      background:linear-gradient(180deg, #fff, #fbfdff);
+    }
+    .list li:nth-child(odd){
+      background:linear-gradient(180deg, #fcfeff, var(--snow));
+    }
+    .item{font-weight:600}
+    .kcal{
+      color:#124a7d;
+      font-variant-numeric: tabular-nums;
+      white-space:nowrap;
+      font-weight:700;
+    }
+    footer{
+      text-align:center;
+      color:#5a7697;
+      font-size:14px;
+      padding: 24px 16px 48px;
+    }
+    .legend{
+      font-size:13px;
+      color:#547092;
+      margin-top:10px;
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" role="banner" aria-label="Winter Menu Week 4">
+    <div class="title" role="group" aria-label="Date">
+      <h1>Winter Menu • Week 4</h1>
+      <div class="sub"><strong>Tuesday</strong> — 03.03.2026</div>
+    </div>
+  </header>
+
+  <main role="main">
+    <div class="grid">
+      <section class="menu-card" itemscope itemtype="https://schema.org/Menu">
+        <meta itemprop="name" content="Winter Menu – Week 4 (Tuesday)" />
+        <div class="row">
+          <div class="col col-6">
+            <div class="tag" aria-label="Mains">
+              <span class="snow" aria-hidden="true">❄️</span>
+              <span>Mains</span>
+            </div>
+            <ul class="list" role="list">
+              <li>
+                <span class="item" itemprop="hasMenuItem">Cajun Chicken Leg</span>
+                <span class="kcal">274 Kcal</span>
+              </li>
+              <li>
+                <span class="item">Roasted Potato</span>
+                <span class="kcal">124 Kcal</span>
+              </li>
+              <li>
+                <span class="item">Nutless Roast Slice</span>
+                <span class="kcal">254 Kcal</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col col-6">
+            <div class="tag" aria-label="Sides">
+              <span class="snow" aria-hidden="true">❄️</span>
+              <span>Sides</span>
+            </div>
+            <ul class="list" role="list">
+
