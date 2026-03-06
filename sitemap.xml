@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://johnmozo.github.io/przewodnik-higieny/</loc>
+  </url>
+
+  <url>
+    <loc>https://johnmozo.github.io/przewodnik-higieny/artykuły.html</loc>
+  </url>
+
+  <url>
+    <loc>https://johnmozo.github.io/przewodnik-higieny/blog.html</loc>
+  </url>
+
+  <url>
+    <loc>https://johnmozo.github.io/przewodnik-higieny/strefy.html</loc>
+  </url>
+
+  <url>
+    <loc>https://johnmozo.github.io/przewodnik-higieny/temperatury.html</loc>
+  </url>
+
+  <url>
+    <loc>https://johnmozo.github.io/przewodnik-higieny/haccp.html</loc>
+  </url>
+
+  <url>
+    <loc>https://johnmozo.github.io/przewodnik-higieny/o-stronie.html</loc>
+  </url>
+
+  <!-- Panel CMS (opcjonalnie, można usunąć jeśli nie chcesz indeksować) -->
+  <url>
+    <loc>https://johnmozo.github.io/przewodnik-higieny/admin/</loc>
+  </url>
+
+</urlset>
