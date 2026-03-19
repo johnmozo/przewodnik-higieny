@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>Mycie i dezynfekcja – Przewodnik Higieny</title>
+</head>
+<body>
+<div id="menu-placeholder"></div>
+<script>
+    fetch("menu.html").then(r => r.text()).then(t => document.getElementById("menu-placeholder").innerHTML = t);
+</script>
+<div class="header">
+    <h1>Mycie i dezynfekcja powierzchni</h1>
+    <p>Proste procedury utrzymania higieny i zapobiegania kontaminacji.</p>
+</div>
+<div class="content">
+    <p>Regularne mycie i dezynfekcja to podstawa bezpiecznej produkcji żywności. Używaj zarejestrowanych środków, przestrzegaj czasu kontaktu i sprawdzaj poziom czystości.
+    Zachowaj dokumentację czyszczenia i stosuj zasadę „czyść najpierw, dezynfekuj potem”.</p>
+    <ul>
+        <li>Usuń resztki jedzenia i brud.</li>
+        <li>Użyj detergentu i gorącej wody.</li>
+        <li>Spłucz i nanieś odpowiedni środek dezynfekujący.</li>
+        <li>Pozostaw do wyschnięcia lub wytrzyj czystą ściereczką.</li>
+    </ul>
+    <div class="related">
+        <h2>Powiązane artykuły</h2>
+        <ul>
+            <li><a href="haccp.html">Podstawy HACCP w kuchni profesjonalnej</a></li>
+            <li><a href="fifo-zapasow.html">Przechowywanie i rotacja zapasów (FIFO)</a></li>
+            <li><a href="strefy.html">Strefy czyste i brudne – jak je organizować</a></li>
+        </ul>
+    </div>
+</div>
+<div id="footer-placeholder"></div>
+<script>
+    fetch("footer.html").then(r => r.text()).then(t => document.getElementById("footer-placeholder").innerHTML = t);
+</script>
+</body>
+</html>

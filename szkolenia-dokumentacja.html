@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>Szkolenia i dokumentacja – Przewodnik Higieny</title>
+</head>
+<body>
+<div id="menu-placeholder"></div>
+<script>
+    fetch("menu.html").then(r => r.text()).then(t => document.getElementById("menu-placeholder").innerHTML = t);
+</script>
+<div class="header">
+    <h1>Szkolenia personelu i dokumentacja</h1>
+    <p>Kluczowe kroki w szkoleniu pracowników i prowadzeniu dokumentów jakości.</p>
+</div>
+<div class="content">
+    <p>Regularne szkolenia i zapis procedur pomagają zmniejszyć błędy oraz wypadki. Dokumentuj:
+    listy obecności, instrukcje, wyniki audytów i działania korygujące.</p>
+    <ul>
+        <li>Prowadź szkolenia wstępne i okresowe.</li>
+        <li>Notuj daty i tematyka szkoleń.</li>
+        <li>Sprawdzaj rozumienie zasad przez personel.</li>
+    </ul>
+    <div class="related">
+        <h2>Powiązane artykuły</h2>
+        <ul>
+            <li><a href="haccp.html">Podstawy HACCP w kuchni profesjonalnej</a></li>
+            <li><a href="mycie-dezynfekcja.html">Mycie i dezynfekcja powierzchni</a></li>
+            <li><a href="temperatury.html">Kontrola temperatur – wymagania w UK</a></li>
+        </ul>
+    </div>
+</div>
+<div id="footer-placeholder"></div>
+<script>
+    fetch("footer.html").then(r => r.text()).then(t => document.getElementById("footer-placeholder").innerHTML = t);
+</script>
+</body>
+</html>

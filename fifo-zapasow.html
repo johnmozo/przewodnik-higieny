@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>FIFO zapasów – Przewodnik Higieny</title>
+</head>
+<body>
+<div id="menu-placeholder"></div>
+<script>
+    fetch("menu.html").then(r => r.text()).then(t => document.getElementById("menu-placeholder").innerHTML = t);
+</script>
+<div class="header">
+    <h1>Przechowywanie i rotacja zapasów (FIFO)</h1>
+    <p>Ogranicz stratę żywności i zapewnij świeżość dzięki procesowi FIFO.</p>
+</div>
+<div class="content">
+    <p>FIFO („first in, first out”) to podstawowa zasada rotacji. Ustaw najstarsze produkty na przód, a nowe z tyłu.
+    Kontroluj daty przydatności, temperaturę i warunki przechowywania.</p>
+    <ul>
+        <li>Oznaczaj każdą dostawę datą przyjęcia.</li>
+        <li>Regularnie sprawdzaj daty ważności.</li>
+        <li>Trzymaj zapasy w odpowiednich temperaturach.</li>
+    </ul>
+    <div class="related">
+        <h2>Powiązane artykuły</h2>
+        <ul>
+            <li><a href="mycie-dezynfekcja.html">Mycie i dezynfekcja powierzchni</a></li>
+            <li><a href="szkolenia-dokumentacja.html">Szkolenia personelu i dokumentacja</a></li>
+            <li><a href="strefy.html">Strefy czyste i brudne – jak je organizować</a></li>
+        </ul>
+    </div>
+</div>
+<div id="footer-placeholder"></div>
+<script>
+    fetch("footer.html").then(r => r.text()).then(t => document.getElementById("footer-placeholder").innerHTML = t);
+</script>
+</body>
+</html>
