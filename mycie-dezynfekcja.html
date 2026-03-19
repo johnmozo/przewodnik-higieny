@@ -35,7 +35,15 @@
 </div>
 <div id="footer-placeholder"></div>
 <script>
-    fetch("footer.html").then(r => r.text()).then(t => document.getElementById("footer-placeholder").innerHTML = t);
+    fetch("footer.html").then(r => r.text()).then(t => {
+        document.getElementById("footer-placeholder").innerHTML = t;
+        const now = new Date();
+        const dd = String(now.getDate()).padStart(2, '0');
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const yyyy = now.getFullYear();
+        const el = document.getElementById('last-update');
+        if (el) el.textContent = `${dd}.${mm}.${yyyy}`;
+    });
 </script>
 </body>
 </html>
