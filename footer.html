@@ -1,6 +1,14 @@
 <footer>
-    © 2026 Przewodnik Higieny – Edukacja dla profesjonalnych kuchni w UK
+    © 2026 Przewodnik Higieny – Edukacja dla profesjonalnych kuchni w UK<br>
+    Ostatnia aktualizacja: <span id="last-update"></span>
 </footer>
+<script>
+    const now = new Date();
+    const dd = String(now.getDate()).padStart(2, '0');
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    const yyyy = now.getFullYear();
+    document.getElementById('last-update').textContent = `${dd}.${mm}.${yyyy}`;
+</script>
 
 <style>
     footer {
